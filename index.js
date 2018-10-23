@@ -1,9 +1,9 @@
 var Buffer = require('safe-buffer').Buffer
-var Transform = require('stream').Transform
+var Transform = require('readable-stream').Transform
 var StringDecoder = require('string_decoder').StringDecoder
 var inherits = require('inherits')
 
-function CipherBase (hashMode) {
+function CipherBase(hashMode) {
   Transform.call(this)
   this.hashMode = typeof hashMode === 'string'
   if (this.hashMode) {
@@ -35,7 +35,7 @@ CipherBase.prototype.update = function (data, inputEnc, outputEnc) {
   return outData
 }
 
-CipherBase.prototype.setAutoPadding = function () {}
+CipherBase.prototype.setAutoPadding = function () { }
 CipherBase.prototype.getAuthTag = function () {
   throw new Error('trying to get auth tag in unsupported state')
 }
